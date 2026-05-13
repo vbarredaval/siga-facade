@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi perfil académico - SIGA</title>
+    <style>
+        /* Estilos base */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f8f8f8; overflow-x: hidden; color: #333; }
+        
+        /* HEADER PRINCIPAL */
+        .top-header { background-color: #f8f8f8; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 50; }
+        .menu-btn { background-color: #3b7bbf; color: white; border: none; padding: 8px 12px; font-size: 20px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 40px;}
+        .page-title { font-size: 24px; color: #555; margin-left: 20px; font-weight: 300; }
+
+        /* CONTENIDO */
+        .content { padding: 25px 20px; background-color: #fff; min-height: 100vh; }
+        .faculty-badge { background-color: #d4d4d4; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+
+        /* PESTAÑAS (TABS) */
+        .tabs-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .tab-item { color: #3b7bbf; font-size: 15px; text-decoration: none; cursor: pointer; }
+        .tab-item.active { background-color: #3b7bbf; color: white; padding: 5px 12px; border-radius: 3px; }
+
+        /* GRILLA DE INFORMACIÓN */
+        .profile-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 15px 10px; margin-bottom: 30px; }
+        .label { color: #cc0000; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .value { color: #555; font-size: 13px; }
+
+        /* BOTÓN INFERIOR */
+        .btn-plan { border: 1px solid #ccc; background: #f9f9f9; padding: 8px 15px; border-radius: 4px; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; color: #333; cursor: pointer; }
+
+        /* MENÚ LATERAL OSCURO */
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; }
+        #sidebar { background-color: #2b2b2b; width: 85%; max-width: 320px; height: 100vh; position: fixed; top: 0; left: -100%; transition: left 0.3s ease; z-index: 200; overflow-y: auto; }
+        #sidebar.active { left: 0; }
+        .sidebar-header { background: linear-gradient(to bottom, #4a5c39 0%, #2b381a 50%, #1a1a1a 100%); padding: 20px 15px; color: white; }
+        .sidebar-logo { font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        .sidebar-user { font-size: 13px; text-transform: uppercase; color: #ddd; display: flex; justify-content: space-between; }
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-item { border-bottom: 1px solid #3a3a3a; }
+        .menu-link { display: flex; align-items: center; padding: 14px 15px; color: #ccc; text-decoration: none; font-size: 14px; }
+        .menu-link.active { background-color: #1ea1f2; color: white; }
+        .menu-icon { margin-right: 15px; font-size: 16px; width: 20px; text-align: center; }
+        .divider { border-top: 1px solid #cc0000; margin-top: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <button class="menu-btn" onclick="toggleMenu()">≡</button>
+        <span class="page-title">Mi perfil académico</span>
+    </div>
+
+    <div class="content">
+        <div class="faculty-badge">DERECHO (2026-I) - (v)</div>
+
+        <div class="tabs-row">
+            <span class="tab-item active">Perfil</span>
+            <span class="tab-item">Periodo actual</span>
+            <span class="tab-item">Indicadores</span>
+            <span class="tab-item">Historial</span>
+            <span class="tab-item">Historial idiomas</span>
+            <span class="tab-item">Solicitudes</span>
+        </div>
+
+        <div class="profile-grid">
+            <div class="label">CENTRO ACADÉMICO</div><div class="value">DERECHO</div>
+            <div class="label">ESTADO ACTUAL</div><div class="value">Alumno</div>
+            <div class="label">PERIODO DE INGRESO</div><div class="value">2026-I</div>
+            <div class="label">CAMPUS</div><div class="value">Lima</div>
+            <div class="label">CICLO ACTUAL</div><div class="value">1</div>
+            <div class="label">ESTADO SOCIOECONÓMICO</div><div class="value">Con deuda</div>
+            <div class="label">NIVEL</div><div class="value">1</div>
+            <div class="label">BECADO</div><div class="value">Normal (sin beca)</div>
+            <div class="label">TIPO DE ESTUDIO</div><div class="value">Pregrado</div>
+            <div class="label">ASESOR</div><div class="value" style="color:#3b7bbf; text-decoration:underline;">MARÍA LAURA MALESPINA</div>
+            <div class="label">PLAN DE ESTUDIO</div><div class="value">2018</div>
+            <div class="label">CORREO DEL ASESOR</div><div class="value" style="color:#3b7bbf; text-decoration:underline;">maria.malespina@udep.edu.pe</div>
+            <div class="label">COLEGIO DE PROCEDENCIA</div><div class="value">SAN JUDAS TADEO (SANTA ANITA, LIMA, LIMA)</div>
+            <div class="label">ESCALA</div><div class="value"></div>
+        </div>
+
+        <button class="btn-plan">↗ Plan de estudios</button>
+    </div>
+
+    <div id="overlay" onclick="toggleMenu()"></div>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">UDEP SIGA</div>
+            <div class="sidebar-user"><span>CELESTE NORIEGA</span> <span>⚙️ ⏻</span></div>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item"><a href="avisos.html" class="menu-link"><span class="menu-icon">⚑</span> Avisos</a></li>
+            <li class="menu-item"><a href="asignaturas.html" class="menu-link"><span class="menu-icon">🛣️</span> Mis asignaturas</a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><span class="menu-icon">🕒</span> Mi horario</a></li>
+            <li class="menu-item"><a href="perfil.html" class="menu-link active"><span class="menu-icon">🔖</span> Mi perfil académico</a></li>
+        </ul>
+        <div class="divider"></div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('overlay');
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                overlay.style.display = 'none';
+            } else {
+                sidebar.classList.add('active');
+                overlay.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>

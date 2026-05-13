@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notas - Filosofía - SIGA</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f8f9fa; }
+        .top-header { background-color: #f8f8f8; padding: 15px 20px; border-bottom: 1px solid #ddd; }
+        .content { padding: 15px; background: #fff; }
+        .back-link { color: #3b7bbf; text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 15px; }
+        .course-title { font-size: 30px; font-weight: 300; color: #555; border-bottom: 2px solid #3b7bbf; padding-bottom: 10px; text-transform: uppercase;}
+        
+        /* Estilos para el bloque de docente y alumnos */
+        .course-details { margin: 20px 0; }
+        .detail-line { display: flex; align-items: center; font-size: 14px; color: #555; margin-bottom: 8px; }
+        .detail-icon { background: #ddd; color: #888; padding: 2px 6px; border-radius: 3px; margin-right: 12px; font-size: 12px; }
+        .detail-line a { color: #3b7bbf; text-decoration: none; }
+
+        .tabs-container { border-bottom: 2px solid #3b7bbf; margin: 20px 0; display: flex; gap: 5px; }
+        .tab { padding: 10px 15px; cursor: pointer; color: #3b7bbf; background: transparent; border: none; }
+        .tab.active { background-color: #3b7bbf; color: white; }
+        .table-section { margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); border-radius: 4px; overflow: hidden;}
+        .table-header { background-color: #3b7bbf; color: white; padding: 10px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; min-width: 500px; }
+        th, td { padding: 12px; border-bottom: 1px solid #eee; text-align: left; font-size: 13px; }
+        .nota { color: #3b7bbf; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="top-header"><span>siga.udep.edu.pe</span></div>
+    <div class="content">
+        <a href="asignaturas.html" class="back-link">&lt; Ir al resumen</a>
+        <h1 class="course-title">FILOSOFÍA ANTIGUA Y MEDIEVAL</h1>
+
+        <div class="course-details">
+            <div class="detail-line">
+                <span class="detail-icon">🔖</span>
+                <strong>Profesora:</strong>&nbsp;
+                <a href="#">KATIA LORENA DEL CARMEN GONZALES</a>
+            </div>
+            <div class="detail-line">
+                <span class="detail-icon">▦</span>
+                <strong>Nro. de alumnos:</strong>&nbsp;<span style="color: #3b7bbf;">61</span>
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <button class="tab active" id="tab-ev" onclick="cambiarPestana('eval')">Evaluaciones</button>
+            <button class="tab" id="tab-as" onclick="cambiarPestana('asist')">Asistencia</button>
+        </div>
+        
+        <div id="sec-eval">
+            <div class="table-section"><div class="table-header">Práctica</div>
+                <table><thead><tr><th>Evaluación</th><th>Peso</th><th>Estado</th><th>Nota</th></tr></thead>
+                <tbody>
+                    <tr><td>Práctica 1</td><td>2</td><td>Acta cerrada</td><td class="nota">17</td></tr>
+                    <tr><td>Práctica 2</td><td>2</td><td>Por evaluar</td><td class="nota">-</td></tr>
+                    <tr><td>Práctica 3</td><td>2</td><td>Por evaluar</td><td class="nota">-</td></tr>
+                </tbody></table></div>
+            <div class="table-section"><div class="table-header">Examen</div>
+                <table><thead><tr><th>Evaluación</th><th>Peso</th><th>Estado</th><th>Nota</th></tr></thead>
+                <tbody>
+                    <tr><td>Parcial</td><td>3</td><td>Acta cerrada</td><td class="nota">19</td></tr>
+                    <tr><td>Final</td><td>4</td><td>Por evaluar</td><td class="nota">-</td></tr>
+                </tbody></table></div>
+        </div>
+        
+        <div id="sec-asist" style="display:none;">
+            <div class="table-section"><div class="table-header">Asistencia</div>
+            <table><thead><tr><th>Estado</th><th>Porcentaje</th></tr></thead>
+            <tbody><tr><td>✔ Al día</td><td>100%</td></tr></tbody></table></div>
+        </div>
+    </div>
+    <script>
+        function cambiarPestana(p) {
+            document.getElementById('sec-eval').style.display = (p === 'eval') ? 'block' : 'none';
+            document.getElementById('sec-asist').style.display = (p === 'asist') ? 'block' : 'none';
+            document.getElementById('tab-ev').classList.toggle('active', p === 'eval');
+            document.getElementById('tab-as').classList.toggle('active', p === 'asist');
+        }
+    </script>
+</body>
+</html>

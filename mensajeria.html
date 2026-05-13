@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensajes - SIGA</title>
+    <style>
+        /* Estilos generales */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f8f8f8; overflow-x: hidden; color: #333; }
+        
+        /* HEADER PRINCIPAL */
+        .top-header { background-color: #f8f8f8; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #ddd; position: sticky; top: 0; z-index: 50; }
+        .menu-btn { background-color: #3b7bbf; color: white; border: none; padding: 8px 12px; font-size: 20px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 40px;}
+        .page-title { font-size: 24px; color: #555; margin-left: 20px; font-weight: 300; }
+
+        /* CONTENIDO DE MENSAJERÍA */
+        .content { padding: 25px 20px; background-color: #fff; min-height: 100vh; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 25px; }
+        .tab { color: #3b7bbf; border: none; background: transparent; padding: 8px 15px; font-size: 15px; cursor: pointer; }
+        .tab.active { background: #3b7bbf; color: white; border-radius: 3px; }
+        .info-box { background-color: #fff9e6; border: 1px solid #ffecb3; color: #856404; padding: 15px; border-radius: 4px; font-size: 14px; margin-bottom: 20px; }
+
+        /* MENÚ LATERAL OSCURO */
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; }
+        #sidebar { background-color: #2b2b2b; width: 85%; max-width: 320px; height: 100vh; position: fixed; top: 0; left: -100%; transition: left 0.3s ease; z-index: 200; overflow-y: auto; }
+        #sidebar.active { left: 0; }
+        
+        .sidebar-header { background: linear-gradient(to bottom, #4a5c39 0%, #2b381a 50%, #1a1a1a 100%); padding: 20px 15px; color: white; }
+        .sidebar-logo { font-size: 22px; font-weight: bold; margin-bottom: 20px; }
+        .sidebar-user { font-size: 13px; text-transform: uppercase; color: #ddd; display: flex; justify-content: space-between; align-items: center;}
+
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-item { border-bottom: 1px solid #3a3a3a; }
+        .menu-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 15px; color: #ccc; text-decoration: none; font-size: 14px; }
+        .menu-link.active { background-color: #1ea1f2; color: white; }
+        .menu-left { display: flex; align-items: center; }
+        .menu-icon { margin-right: 15px; font-size: 16px; width: 20px; text-align: center; }
+        .chevron { font-size: 12px; color: #777; }
+        .menu-link.active .chevron { color: white; }
+
+        .divider { border-top: 1px solid #cc0000; margin-top: 0; }
+        .bottom-links .menu-link { color: #aaa; font-size: 13px; padding: 12px 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="top-header">
+        <button class="menu-btn" onclick="toggleMenu()">≡</button>
+        <span class="page-title">Mensajes</span>
+    </div>
+
+    <div class="content">
+        <div class="tabs">
+            <span class="tab active">Recibidos</span>
+            <span class="tab">Enviados</span>
+        </div>
+        <div class="info-box">Tu bandeja de entrada está vacía.</div>
+        <button style="background:#82b440; color:white; border:none; padding:8px 15px; border-radius:3px; font-size:14px; cursor: pointer;">📝 Nuevo</button>
+    </div>
+
+    <div id="overlay" onclick="toggleMenu()"></div>
+
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">UDEP SIGA</div>
+            <div class="sidebar-user">
+                <span>CELESTE NORIEGA</span>
+                <span>⚙️ ⏻</span>
+            </div>
+        </div>
+
+        <ul class="menu-list">
+            <li class="menu-item"><a href="avisos.html" class="menu-link"><div class="menu-left"><span class="menu-icon">⚑</span> Avisos</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="asignaturas.html" class="menu-link"><div class="menu-left"><span class="menu-icon">🛣️</span> Mis asignaturas</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">🕒</span> Mi horario</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="perfil_academico.html" class="menu-link"><div class="menu-left"><span class="menu-icon">🔖</span> Mi perfil académico</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="perfil_personal.html" class="menu-link"><div class="menu-left"><span class="menu-icon">👤</span> Mi perfil personal</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="asesor.html" class="menu-link"><div class="menu-left"><span class="menu-icon">💼</span> Mi asesor</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="pensiones.html" class="menu-link"><div class="menu-left"><span class="menu-icon">||||</span> Pensiones ⚠️</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="mensajeria.html" class="menu-link active"><div class="menu-left"><span class="menu-icon">✉️</span> Mensajería</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="tramites.html" class="menu-link"><div class="menu-left"><span class="menu-icon">⇄</span> Trámites académicos</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="intercambio.html" class="menu-link"><div class="menu-left"><span class="menu-icon">🌎</span> Intercambio estudiantil</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">🏢</span> Ambientes</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">☁️</span> Documentos oficiales</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">🔍</span> Buscar</div> <span class="chevron">›</span></a></li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <ul class="menu-list bottom-links">
+            <li class="menu-item"><a href="#" class="menu-link">Universidad</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Mapa de sitio</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Reclamos, consultas y sugerencias</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Guía de usuario</a></li>
+        </ul>
+    </div>
+
+    <script>
+        function toggleMenu(){ 
+            var s=document.getElementById('sidebar'), o=document.getElementById('overlay'); 
+            s.classList.toggle('active'); 
+            o.style.display=s.classList.contains('active')?'block':'none'; 
+        }
+    </script>
+</body>
+</html>

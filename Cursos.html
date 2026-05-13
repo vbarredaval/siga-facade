@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis asignaturas - SIGA</title>
+    <style>
+        /* Estilos generales */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #fff; overflow-x: hidden; }
+        
+        /* HEADER PRINCIPAL */
+        .top-header { background-color: #f8f8f8; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #ddd; }
+        .menu-btn { background-color: #3b7bbf; color: white; border: none; padding: 8px 12px; font-size: 20px; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 45px; height: 40px;}
+        .page-title { font-size: 24px; color: #555; margin-left: 20px; font-weight: 300; }
+
+        /* CONTENIDO DE ASIGNATURAS */
+        .content { padding: 25px 20px; }
+        
+        /* Etiqueta de facultad */
+        .faculty-badge { background-color: #d4d4d4; color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; display: inline-block; margin-bottom: 15px; letter-spacing: 0.5px; }
+        
+        /* Título grande */
+        .main-heading { font-size: 32px; font-weight: 300; color: #555; margin: 0 0 15px 0; }
+        
+        /* Botones + y - */
+        .controls { display: flex; gap: 5px; margin-bottom: 20px; }
+        .ctrl-btn { background: #fff; border: 1px solid #ccc; border-radius: 3px; width: 35px; height: 30px; font-size: 18px; color: #555; cursor: pointer; display: flex; align-items: center; justify-content: center;}
+
+        /* Tarjetas de cursos */
+        .course-card { background-color: #f5f5f5; border: 1px solid #e8e8e8; border-radius: 5px; padding: 15px; margin-bottom: 8px; cursor: pointer; transition: background 0.2s; }
+        .course-card:hover { background-color: #ebebeb; }
+        
+        /* Botón azul pequeño dentro del curso */
+        .course-code { background-color: #3b97d3; color: white; padding: 4px 10px; border-radius: 3px; font-size: 11px; display: inline-block; margin-bottom: 8px; font-weight: bold;}
+        .course-code span { font-size: 10px; margin-right: 3px; }
+        
+        /* Nombre del curso */
+        .course-name { font-size: 14px; font-weight: bold; color: #555; }
+
+        /* MENÚ LATERAL (Igual que antes, pero con 'Mis asignaturas' activo) */
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; }
+        #sidebar { background-color: #2b2b2b; width: 85%; max-width: 320px; height: 100vh; position: fixed; top: 0; left: -100%; transition: left 0.3s ease; z-index: 200; overflow-y: auto; }
+        #sidebar.active { left: 0; }
+        .sidebar-header { background: linear-gradient(to bottom, #4a5c39 0%, #2b381a 50%, #1a1a1a 100%); padding: 20px 15px; color: white; position: relative;}
+        .sidebar-logo { font-size: 22px; font-weight: bold; margin-bottom: 20px; letter-spacing: 1px;}
+        .sidebar-user { font-size: 13px; text-transform: uppercase; color: #ddd; display: flex; justify-content: space-between; align-items: center;}
+        .user-icons { font-size: 16px; }
+        .menu-list { list-style: none; padding: 0; margin: 0; }
+        .menu-item { border-bottom: 1px solid #3a3a3a; }
+        .menu-link { display: flex; align-items: center; justify-content: space-between; padding: 14px 15px; color: #ccc; text-decoration: none; font-size: 14px; }
+        .menu-link.active { background-color: #1ea1f2; color: white; border-bottom: none;}
+        .menu-left { display: flex; align-items: center; }
+        .menu-icon { margin-right: 15px; font-size: 16px; width: 20px; text-align: center; }
+        .chevron { font-size: 12px; color: #777; }
+        .menu-link.active .chevron { color: white; }
+        .divider { border-top: 1px solid #cc0000; margin-top: 0; }
+        .bottom-links .menu-link { color: #aaa; font-size: 13px; padding: 12px 15px; }
+    </style>
+</head>
+<body>
+
+    <!-- Cabecera principal -->
+    <div class="top-header">
+        <button class="menu-btn" onclick="toggleMenu()">≡</button>
+        <span class="page-title">Mis asignaturas</span>
+    </div>
+
+    <!-- Contenido -->
+    <div class="content">
+        <div class="faculty-badge">DERECHO (2026-I)</div>
+        <h1 class="main-heading">Resumen de evaluaciones</h1>
+        
+        <div class="controls">
+            <button class="ctrl-btn">+</button>
+            <button class="ctrl-btn">-</button>
+        </div>
+
+        <!-- Lista de Cursos -->
+        <div class="course-card" onclick="window.location.href='notas_derecho.html'">
+            <div class="course-code"><span>🔍</span> FID</div>
+            <div class="course-name">INTRODUCCIÓN AL DERECHO (B)</div>
+        </div>
+
+        <div class="course-card" onclick="window.location.href='notas_filosofia.html'">
+            <div class="course-code"><span>🔍</span> FL1</div>
+            <div class="course-name">FILOSOFÍA ANTIGUA Y MEDIEVAL (B)</div>
+        </div>
+
+        <div class="course-card" onclick="window.location.href='notas_historia.html'">
+            <div class="course-code"><span>🔍</span> HC1</div>
+            <div class="course-name">HISTORIA Y CULTURA PREMODERNA (H) DER</div>
+        </div>
+
+        <div class="course-card" onclick="window.location.href='notas_lengua.html'">
+            <div class="course-code"><span>🔍</span> LC1</div>
+            <div class="course-name">LENGUA Y COMUNICACIÓN 1 (H) DER</div>
+        </div>
+
+        <div class="course-card" onclick="window.location.href='notas_logica.html'">
+            <div class="course-code"><span>🔍</span> LF</div>
+            <div class="course-name">LÓGICA (B)</div>
+        </div>
+
+        <div class="course-card" onclick="window.location.href='notas_mate.html'">
+            <div class="course-code"><span>🔍</span> MB</div>
+            <div class="course-name">MATEMÁTICA BÁSICA (B)</div>
+        </div>
+        
+        <div class="controls" style="margin-top: 15px;">
+            <button class="ctrl-btn">+</button>
+            <button class="ctrl-btn">-</button>
+        </div>
+    </div>
+
+    <!-- Menú Lateral -->
+    <div id="overlay" onclick="toggleMenu()"></div>
+    <div id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">UDEP SIGA</div>
+            <div class="sidebar-user">
+                <span>CELESTE NORIEGA</span>
+                <div class="user-icons">⚙️ ⏻</div>
+            </div>
+        </div>
+
+        <ul class="menu-list">
+            <!-- Nota que ahora 'Mis asignaturas' es el que tiene la clase 'active' -->
+            <li class="menu-item"><a href="avisos.html" class="menu-link"><div class="menu-left"><span class="menu-icon">⚑</span> Avisos</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link active"><div class="menu-left"><span class="menu-icon">🛣️</span> Mis asignaturas</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">🕒</span> Mi horario</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">🔖</span> Mi perfil académico</div> <span class="chevron">›</span></a></li>
+            <li class="menu-item"><a href="#" class="menu-link"><div class="menu-left"><span class="menu-icon">👤</span> Mi perfil personal</div> <span class="chevron">›</span></a></li>
+        </ul>
+        <div class="divider"></div>
+        <ul class="menu-list bottom-links">
+            <li class="menu-item"><a href="#" class="menu-link">Universidad</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">Mapa de sitio</a></li>
+        </ul>
+    </div>
+
+    <!-- Script del menú -->
+    <script>
+        function toggleMenu() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('overlay');
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+                overlay.style.display = 'none';
+            } else {
+                sidebar.classList.add('active');
+                overlay.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
