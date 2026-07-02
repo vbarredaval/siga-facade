@@ -19,6 +19,24 @@
         .detail-icon { background: #ddd; color: #888; padding: 2px 6px; border-radius: 3px; margin-right: 12px; font-size: 12px; }
         .detail-line a { color: #3b7bbf; text-decoration: none; }
 
+        /* --- NUEVO: Estilos del recuadro de Promedio --- */
+        .promedio-box {
+            background-color: #eaf4fb; 
+            border: 1px solid #dcecf8; 
+            border-radius: 5px; 
+            padding: 12px 15px; 
+            margin: 20px 0; 
+            font-size: 15px;
+        }
+        .promedio-box strong {
+            color: #3b7bbf; 
+            font-weight: bold;
+        }
+        .promedio-box .nota-fija {
+            color: #689ec9; 
+        }
+        /* ----------------------------------------------- */
+
         .tabs-container { border-bottom: 2px solid #3b7bbf; margin-bottom: 20px; display: flex; flex-wrap: wrap; gap: 5px; }
         .tab { padding: 10px 15px; font-size: 15px; cursor: pointer; color: #3b7bbf; background: transparent; border: none; }
         .tab.active { background-color: #3b7bbf; color: white; }
@@ -51,6 +69,11 @@
             </div>
         </div>
 
+        <!-- AQUÍ COLOCAMOS EL NUEVO BLOQUE -->
+        <div class="promedio-box">
+            <strong>Promedio Final:</strong> <span class="nota-fija">19</span>
+        </div>
+
         <div class="tabs-container">
             <button class="tab active" id="tab-eval" onclick="cambiarPestana('eval')">Evaluaciones</button>
             <button class="tab" id="tab-asist" onclick="cambiarPestana('asist')">Asistencia</button>
@@ -73,7 +96,7 @@
                     <thead><tr><th>Evaluación</th><th>Peso</th><th>Estado</th><th>Nota</th></tr></thead>
                     <tbody>
                         <tr><td>Parcial</td><td>3</td><td>Acta cerrada</td><td class="nota">18</td></tr>
-                        <tr><td>Final</td><td>4</td><td>Por evaluar</td><td class="nota">-</td></tr>
+                        <tr><td>Final</td><td>4</td><td>Acta cerrada</td><td class="nota">20</td></tr>
                     </tbody>
                 </table>
             </div>
